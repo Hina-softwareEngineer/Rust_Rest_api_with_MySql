@@ -81,32 +81,35 @@ fn hello() -> JsonValue {
     data
 }
 
-
-
 #[put("/update", data = "<user_input>")]
-fn edit(user_input: Json<Student>, map: State<'_, MessageMap>) -> JsonValue{
+fn edit(user_input: Json<Student>, map: State<'_, MessageMap>) -> JsonValue {
     let res: Student = user_input.into_inner();
     update(res);
     json!({"status":"okay"})
 }
 
+#[delete("/delete/<id>")]
+fn deleted(id: i32) {
+    delete(id);
+}
+
 // Mutex for real time store data on server.
 type MessageMap = Mutex<HashMap<ID, Option<String>>>;
 #[post("/add", data = "<user_input>")]
-fn helloPost(user_input: Json<Student>, map: State<'_, MessageMap>) {
+fn helloPost(user_input: Json<Student>, map: State<'_, MessageMap>) -> JsonValue {
     println!("{:?}", user_input.0.name);
     println!("{:?}", user_input.0.email);
     println!("{:?}", user_input.0.age);
 
     let res: Student = user_input.into_inner();
-    insert(res);
+    let result = insert(res);
+
+    result
 }
-
-
 
 fn rocket() -> rocket::Rocket {
     rocket::ignite()
-        .mount("/", routes![hello, helloPost, edit])
+        .mount("/", routes![hello, helloPost, edit, deleted])
         .attach(make_cors())
         .manage(Mutex::new(HashMap::<ID, Option<String>>::new()))
 }
@@ -115,15 +118,13 @@ fn main() {
     rocket().launch();
 }
 
-fn insert(student: Student) {
-    let pool =
-        Pool::new("mysql://sql12351095:CPC85WHpBn@sql12.freemysqlhosting.net:3306/sql12351095")
-            .unwrap();
+fn insert(student: Student) -> JsonValue {
+    let pool = Pool::new("mysql://root:root@localhost:3306/Rust_testing").unwrap();
 
     let mut conn = pool.get_conn().unwrap();
     let students = vec![student];
 
-    let a = conn
+    let b = conn
         .exec_batch(
             r"INSERT INTO student ( name, email, age)
           VALUES ( :name, :email, :age)",
@@ -136,13 +137,14 @@ fn insert(student: Student) {
             }),
         )
         .unwrap();
-    println!("a value is  : {:?}", a);
+
+    let c = conn.last_insert_id();
+    println!("c value is : {:?}", c);
+    json!({ "id": c })
 }
 
 fn fetch() -> JsonValue {
-    let pool =
-        Pool::new("mysql://sql12351095:CPC85WHpBn@sql12.freemysqlhosting.net:3306/sql12351095")
-            .unwrap();
+    let pool = Pool::new("mysql://root:root@localhost:3306/Rust_testing").unwrap();
 
     let mut conn = pool.get_conn().unwrap();
     let selected_payments = conn
@@ -161,9 +163,7 @@ fn fetch() -> JsonValue {
 }
 
 fn update(student: Student) {
-    let pool =
-        Pool::new("mysql://sql12351095:CPC85WHpBn@sql12.freemysqlhosting.net:3306/sql12351095")
-            .unwrap();
+    let pool = Pool::new("mysql://root:root@localhost:3306/Rust_testing").unwrap();
     let mut conn = pool.get_conn().unwrap();
 
     let students = vec![student];
@@ -189,23 +189,20 @@ fn update(student: Student) {
     println!("updated successfully");
 }
 
-
-
-fn delete(student: Student) {
-    let pool = Pool::new("mysql://root:root@localhost:3306/Rust_testing").unwrap();
+fn delete(id1: i32) {
+    let pool =
+        Pool::new("mysql://sql12351095:CPC85WHpBn@sql12.freemysqlhosting.net:3306/sql12351095")
+            .unwrap();
 
     let mut conn = pool.get_conn().unwrap();
-    let students = vec![student];
 
-    conn.exec_batch(
+    conn.exec_drop(
         r"delete from student 
         where sid=:sid",
-        students.iter().map(|p| {
-            params! {
-                "sid" => p.sid,
-            }
-        }),
+        params! {
+            "sid"=> id1,
+        },
     )
     .unwrap();
-    println!("deleted successfully");
+    println!("deleted successfully {:?}", id1);
 }
