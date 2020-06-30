@@ -119,7 +119,9 @@ fn main() {
 }
 
 fn insert(student: Student) -> JsonValue {
-    let pool = Pool::new("mysql://root:root@localhost:3306/Rust_testing").unwrap();
+    let pool =
+        Pool::new("mysql://sql12351095:CPC85WHpBn@sql12.freemysqlhosting.net:3306/sql12351095")
+            .unwrap();
 
     let mut conn = pool.get_conn().unwrap();
     let students = vec![student];
@@ -144,7 +146,9 @@ fn insert(student: Student) -> JsonValue {
 }
 
 fn fetch() -> JsonValue {
-    let pool = Pool::new("mysql://root:root@localhost:3306/Rust_testing").unwrap();
+    let pool =
+        Pool::new("mysql://sql12351095:CPC85WHpBn@sql12.freemysqlhosting.net:3306/sql12351095")
+            .unwrap();
 
     let mut conn = pool.get_conn().unwrap();
     let selected_payments = conn
@@ -163,7 +167,9 @@ fn fetch() -> JsonValue {
 }
 
 fn update(student: Student) {
-    let pool = Pool::new("mysql://root:root@localhost:3306/Rust_testing").unwrap();
+    let pool =
+        Pool::new("mysql://sql12351095:CPC85WHpBn@sql12.freemysqlhosting.net:3306/sql12351095")
+            .unwrap();
     let mut conn = pool.get_conn().unwrap();
 
     let students = vec![student];
@@ -190,7 +196,9 @@ fn update(student: Student) {
 }
 
 fn delete(id1: i32) {
-    let pool = Pool::new("mysql://root:root@localhost:3306/Rust_testing").unwrap();
+    let pool =
+        Pool::new("mysql://sql12351095:CPC85WHpBn@sql12.freemysqlhosting.net:3306/sql12351095")
+            .unwrap();
 
     let mut conn = pool.get_conn().unwrap();
 
@@ -205,4 +213,4 @@ fn delete(id1: i32) {
     println!("deleted successfully {:?}", id1);
 }
 
-//mysql://sql12351095:CPC85WHpBn@sql12.freemysqlhosting.net:3306/sql12351095
+//mysql://root:password@localhost:3306/Rust_testing
