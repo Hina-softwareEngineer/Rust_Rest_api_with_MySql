@@ -126,8 +126,8 @@ fn insert(student: Student) -> JsonValue {
 
     let b = conn
         .exec_batch(
-            r"INSERT INTO student ( name, email, age)
-          VALUES ( :name, :email, :age)",
+            r"INSERT INTO student (name, email, age)
+          VALUES (:name, :email, :age)",
             students.iter().map(|p| {
                 params! {
                     "name" => &p.name,
