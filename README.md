@@ -1,4 +1,4 @@
-#✨ RUST REST API✳️✳️ WITH MYSQL DATABASE (CRUD) 🔥🔥 USING ROCKET :rocket: :rocket:
+# ✨ RUST REST API✳️✳️ WITH MYSQL DATABASE (CRUD) 🔥🔥 USING ROCKET :rocket: :rocket:
 
 ⚡️ Demo link : http://rust-rest-api.surge.sh/
 ⚡️ Rust-Server Link : https://rocket-restapi-crud.herokuapp.com/
