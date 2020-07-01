@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
+body {
+  font-family: "Nunito", sans-serif;
+  margin: 0;
+}
+
+h1 {
+  font-size: 3.5rem;
+  margin-top: 0;
+  text-align: center;
+  background-color: #005b9f;
+  color: white;
+}
+
+p {
+  color: white;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  font-weight: 700;
+  font-size: 20px;
+  position: fixed;
+  width: 96%;
+  opacity: 0.7;
+  letter-spacing: 1.5px;
+}
+
+h2 {
+  font-size: 3rem;
+  text-align: center;
+  color: #03a9f4;
+  -webkit-text-stroke: #005b9f;
+  -webkit-text-stroke-width: 1px;
+}
+
+.insert-form,
+.edit-f {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.insert-form > input,
+.edit-f > input {
+  display: block;
+  margin: 10px 15px;
+  width: -webkit-fill-available;
+  border: 2px solid #03a9f4;
+  font-size: 24px;
+  padding: 10px 15px;
+}
+
+.insert-form > button,
+.edit-f > button {
+  float: left;
+  font-size: 24px;
+  margin: 10px 15px;
+  border: 2px solid #03a9f4;
+  background-color: white;
+  color: #03a9f4;
+  padding: 10px 15px;
+}
+
+.insert-form > button:hover,
+.edit-f > button:hover {
+  background-color: #03a9f4;
+  color: white;
+}
+
+.insert-form > input:focus,
+.edit-f > input:focus {
+  outline: none;
+  background-color: #03a9f4;
+  color: whitesmoke;
+  border: 2px solid #007ac1;
+}
+
+.container {
+  margin: 100px auto;
+  max-width: 1000px;
+  text-align: center;
+}
+
+li {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+li:nth-child(even) {
+  background-color: #03a9f4;
+}
+
+h4 {
+  background-color: #007ac1;
+  color: #e6e6e6;
+  font-size: 1.5rem;
+  border-bottom: 2px solid grey;
+  margin: 10px auto;
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+h4 > button {
+  border: none;
+  background-color: #007ac1;
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+  color: #e6e6e6;
+  font-size: 1.5rem;
+}
+
+h4 > button:focus {
+  outline: none;
+}
+
+li > span,
+h4 > span {
+  text-align: left;
+  width: 200px;
+}
+
+li > span {
+  font-size: 20px;
+}
+
+li > strong {
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.4s ease-out 0s;
+}
+
+li > strong:hover {
+  color: rgb(255, 0, 0);
+  transform: scale(1.2);
+}
+
+.ul {
+  border-bottom: 2px solid lightgray;
+  padding: 0;
+}
+
+.edit {
+  border: 2px solid #007ac1;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 5px 10px;
+  background-color: inherit;
+}
+
+.edit:hover {
+  background-color: lightblue;
+}
+
+.edit:focus {
+  outline: none;
+}

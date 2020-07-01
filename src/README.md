@@ -1,6 +1,7 @@
-#✨ RUST REST API✳️✳️ WITH MYSQL DATABASE (CRUD) 🔥🔥 using Rocket :rocket: :rocket:
+#✨ RUST REST API✳️✳️ WITH MYSQL DATABASE (CRUD) 🔥🔥 USING ROCKET :rocket: :rocket:
 
-link :
+⚡️ Demo link : http://rust-rest-api.surge.sh/
+⚡️ Rust-Server Link : https://rocket-restapi-crud.herokuapp.com/
 
 #### - Rocket Requests (with Cors)
 
@@ -162,3 +163,9 @@ fn delete(id1: i32) {
 }
 
 ```
+
+> ⚡️ **Note** : I am adding my fronted Code in this repo, This code has no link with heroku. First I pushed my rust code to heroku, then I add my fronted code so that all my code placed in one repo.
+
+##### For Heroku Deployment : https://github.com/Hina-softwareEngineer/Rust_Server
+
+**Moreover, If you want to make Pull Requests, You are wellcome. ✌️ ✌️**
