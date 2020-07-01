@@ -74,13 +74,15 @@ fn make_cors() -> Cors {
     .expect("Error while building the Cros")
 }
 
+//------------------------------get Request to send data in json-------------------
 #[get("/")]
-fn hello() -> JsonValue {
+fn getRequest() -> JsonValue {
     let mut data = fetch();
 
     data
 }
 
+//------------------------------put request to update data-------------------------
 #[put("/update", data = "<user_input>")]
 fn edit(user_input: Json<Student>, map: State<'_, MessageMap>) -> JsonValue {
     let res: Student = user_input.into_inner();
@@ -88,11 +90,13 @@ fn edit(user_input: Json<Student>, map: State<'_, MessageMap>) -> JsonValue {
     json!({"status":"okay"})
 }
 
+//------------------------------delete request to delete data---------------------
 #[delete("/delete/<id>")]
 fn deleted(id: i32) {
     delete(id);
 }
 
+//-----------------------------post request to store data-----------------------
 // Mutex for real time store data on server.
 type MessageMap = Mutex<HashMap<ID, Option<String>>>;
 #[post("/add", data = "<user_input>")]
@@ -107,9 +111,11 @@ fn helloPost(user_input: Json<Student>, map: State<'_, MessageMap>) -> JsonValue
     result
 }
 
+// ---------------------------main function for rocket launch------------------------
+
 fn rocket() -> rocket::Rocket {
     rocket::ignite()
-        .mount("/", routes![hello, helloPost, edit, deleted])
+        .mount("/", routes![getRequest, helloPost, edit, deleted])
         .attach(make_cors())
         .manage(Mutex::new(HashMap::<ID, Option<String>>::new()))
 }
@@ -118,6 +124,7 @@ fn main() {
     rocket().launch();
 }
 
+//------------------------------Insert DAta into database-------------------------
 fn insert(student: Student) -> JsonValue {
     let pool =
         Pool::new("mysql://sql12351095:CPC85WHpBn@sql12.freemysqlhosting.net:3306/sql12351095")
@@ -145,6 +152,7 @@ fn insert(student: Student) -> JsonValue {
     json!({ "id": c })
 }
 
+//---------------------------------get data from database----------------------
 fn fetch() -> JsonValue {
     let pool =
         Pool::new("mysql://sql12351095:CPC85WHpBn@sql12.freemysqlhosting.net:3306/sql12351095")
@@ -166,6 +174,7 @@ fn fetch() -> JsonValue {
     json!(selected_payments)
 }
 
+//--------------------------------update data in database----------------------
 fn update(student: Student) {
     let pool =
         Pool::new("mysql://sql12351095:CPC85WHpBn@sql12.freemysqlhosting.net:3306/sql12351095")
@@ -195,6 +204,7 @@ fn update(student: Student) {
     println!("updated successfully");
 }
 
+//--------------------------------delete data from database----------------------
 fn delete(id1: i32) {
     let pool =
         Pool::new("mysql://sql12351095:CPC85WHpBn@sql12.freemysqlhosting.net:3306/sql12351095")
