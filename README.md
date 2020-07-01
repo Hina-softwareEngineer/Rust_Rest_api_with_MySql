@@ -1,18 +1,20 @@
-#✨ RUST REST API✳️✳️ WITH MYSQL DATABASE (CRUD) 🔥🔥 USING ROCKET :rocket: :rocket:
+# ✨ RUST REST API✳️✳️ WITH MYSQL DATABASE (CRUD) 🔥🔥 USING ROCKET :rocket: :rocket:
 
 ⚡️ Demo link : http://rust-rest-api.surge.sh/
+<br>
 ⚡️ Rust-Server Link : https://rocket-restapi-crud.herokuapp.com/
 
 #### - Rocket Requests (with Cors)
 
-1- Get Request
-2- Post Request
-3- Put Request
-4- Delete Request
+1. Get Request
+2. Post Request
+3. Put Request
+4. Delete Request
 
 ## ✨ Where I host MySql Database for testing?
 
 Link : https://www.freemysqlhosting.net/
+<br>
 It gives you free 5MB.
 
 ### ✨ Data Fetching (Get Request)
@@ -164,7 +166,7 @@ fn delete(id1: i32) {
 
 ```
 
-> ⚡️ **Note** : I am adding my fronted Code in this repo, This code has no link with heroku. First I pushed my rust code to heroku, then I add my fronted code so that all my code placed in one repo.
+> ⚡️ **Note** : I am adding my frontend Code in this repo, This code has no link with heroku. First I pushed my rust code to heroku, then I add my frontend code so that all my code placed in one repo.
 
 ##### For Heroku Deployment : https://github.com/Hina-softwareEngineer/Rust_Server
 
